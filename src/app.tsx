@@ -1,3 +1,4 @@
+import { CreateNoteCard } from '@components/create-note-card';
 import { NoteCard } from '@components/note-card';
 
 export const App = () => {
@@ -16,12 +17,7 @@ export const App = () => {
       <div className="h-px bg-slate-700" />
 
       <section className="grid auto-rows-[250px] grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-        <article className="flex flex-col gap-3 rounded-md bg-slate-700 p-5">
-          <h3 className="text-sm font-medium text-slate-200">Add your note</h3>
-          <p className="text-sm leading-6 text-slate-400">
-            Record an audio note that will be converted to text automatically.
-          </p>
-        </article>
+        <CreateNoteCard />
 
         <NoteCard
           at="2 days ago"
