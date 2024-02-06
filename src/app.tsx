@@ -20,18 +20,18 @@ export const App = () => {
         <CreateNoteCard />
 
         <NoteCard
-          at="2 days ago"
-          description=" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam repudiandae aliquam delectus ad sit, corrupti, voluptas nostrum beatae, suscipit illo corporis blanditiis fugiat odit? "
+          note={{
+            content:
+              'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam repudiandae aliquam delectus ad sit, corrupti, voluptas nostrum beatae, suscipit illo corporis blanditiis fugiat odit?',
+            date: new Date(),
+          }}
         />
-
         <NoteCard
-          at="3 days ago"
-          description=" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam repudiandae aliquam delectus ad sit, corrupti, voluptas nostrum beatae, suscipit illo corporis blanditiis fugiat odit?"
-        />
-
-        <NoteCard
-          at="4 days ago"
-          description=" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam repudiandae aliquam delectus ad sit, corrupti, voluptas nostrum beatae, suscipit illo corporis blanditiis fugiat odit?"
+          note={{
+            content:
+              'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam repudiandae aliquam delectus ad sit, corrupti, voluptas nostrum beatae, suscipit illo corporis blanditiis fugiat odit?',
+            date: new Date('2024/02/01'),
+          }}
         />
       </section>
     </div>
