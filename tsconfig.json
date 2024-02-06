@@ -21,6 +21,9 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ],
       "@/*": [
         "./src/*"
       ]
@@ -28,7 +31,8 @@
   },
   "include": [
     "src",
-    "vite.config.ts"
+    "vite.config.ts",
+    "tailwind.config.ts"
   ],
   "references": [
     {
