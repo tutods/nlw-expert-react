@@ -38,7 +38,7 @@ export const NoteCard = ({ note: { date, content } }: NoteCardProps) => {
             type="button"
           >
             Do you want to{' '}
-            <span className="text-red-400 transition-all ease-in-out group-hover:underline">
+            <span className="text-red-400 transition-all ease-in-out group-hover:underline group-focus-visible:underline">
               delete this note
             </span>
             ?
