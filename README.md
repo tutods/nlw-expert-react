@@ -25,6 +25,8 @@ This are some changes I have made during this 3 days course:
 - [x] Create custom hooks:
   - for recording;
   - for open and close the dialog manually, without any trigger.
+- [x] Handle `focus-visible:` styles for the most of the buttons:
+  - In some cases, like the "X" to close the modal, instead of add a outline, I change the colors, because of outline will not appear on the corners (being cut by the dialog itself).
 
 ## 🌐 Live Version
 
