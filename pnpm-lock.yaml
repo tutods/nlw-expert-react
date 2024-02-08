@@ -31,6 +31,9 @@ devDependencies:
   '@tutods/prettier-config':
     specifier: ^0.3.1
     version: 0.3.1(prettier-plugin-tailwindcss@0.5.11)(prettier@3.2.5)
+  '@types/dom-speech-recognition':
+    specifier: ^0.0.4
+    version: 0.0.4
   '@types/react':
     specifier: ^18.2.43
     version: 18.2.55
@@ -1037,6 +1040,10 @@ packages:
     dependencies:
       prettier: 3.2.5
       prettier-plugin-tailwindcss: 0.5.11(prettier@3.2.5)
+    dev: true
+
+  /@types/dom-speech-recognition@0.0.4:
+    resolution: {integrity: sha512-zf2GwV/G6TdaLwpLDcGTIkHnXf8JEf/viMux+khqKQKDa8/8BAUtXXZS563GnvJ4Fg0PBLGAaFf2GekEVSZ6GQ==}
     dev: true
 
   /@types/estree@1.0.5:
