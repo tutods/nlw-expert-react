@@ -5,7 +5,11 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { toast } from 'sonner';
 
-export const NewNoteCard = () => {
+type NewNoteCardProps = {
+  onNoteCreated: (content: string) => void;
+};
+
+export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState(true);
   const [content, setContent] = useState('');
 
@@ -25,6 +29,12 @@ export const NewNoteCard = () => {
 
   function handleSaveNote(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+
+    onNoteCreated(content);
+
+    // Reset modal state
+    setShouldShowOnboarding(true);
+    setContent('');
 
     toast.success('Note created successfully!');
   }
