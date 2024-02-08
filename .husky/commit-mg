@@ -1,0 +1,2 @@
+echo "VALIDATING COMMIT"
+npx commitlint --edit 

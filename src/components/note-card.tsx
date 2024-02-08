@@ -6,12 +6,14 @@ import { X } from 'lucide-react';
 
 type NoteCardProps = {
   note: {
+    id: string;
     date: Date;
     content: ReactNode;
   };
+  onNoteDeleted: (id: string) => void;
 };
 
-export const NoteCard = ({ note: { date, content } }: NoteCardProps) => {
+export const NoteCard = ({ note: { id, date, content }, onNoteDeleted }: NoteCardProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger className="relative flex cursor-pointer flex-col gap-3 overflow-hidden rounded-md bg-slate-800 p-5 text-left outline-none transition-colors duration-300 ease-in-out hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400">
@@ -22,7 +24,7 @@ export const NoteCard = ({ note: { date, content } }: NoteCardProps) => {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/60" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 flex h-[60vh] w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-md bg-slate-700 outline-none">
+        <Dialog.Content className="fixed inset-0 flex w-full flex-col overflow-hidden bg-slate-700 outline-none md:inset-auto md:left-1/2 md:top-1/2 md:h-[60vh] md:max-w-[640px] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-md">
           <Dialog.Close className="absolute right-0 top-0 bg-slate-800 p-1.5 text-slate-400 outline-none transition-colors ease-in-out hover:bg-slate-900 hover:text-slate-100 focus-visible:bg-lime-400 focus-visible:text-lime-950">
             <X className="size-5" />
           </Dialog.Close>
@@ -35,6 +37,7 @@ export const NoteCard = ({ note: { date, content } }: NoteCardProps) => {
           </div>
           <button
             className="group w-full bg-slate-800 py-4 text-center text-sm font-medium text-slate-300 outline-none transition-colors ease-in-out hover:bg-slate-900 focus-visible:bg-slate-950 focus-visible:text-slate-100"
+            onClick={() => onNoteDeleted(id)}
             type="button"
           >
             Do you want to{' '}

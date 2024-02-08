@@ -39,6 +39,13 @@ export const App = () => {
     setSearch(evt.target.value);
   }
 
+  function onNoteDeleted(id: string) {
+    const filteredNotes = notes.filter(note => note.id !== id);
+
+    setNotes(filteredNotes);
+    localStorage.setItem('notes', JSON.stringify(filteredNotes));
+  }
+
   const filteredNotes = useMemo(() => {
     if (!search.length) {
       return notes;
@@ -50,7 +57,7 @@ export const App = () => {
   }, [search, notes]);
 
   return (
-    <div className="mx-auto my-12 max-w-6xl space-y-6 px-4 md:px-0">
+    <div className="mx-auto my-12 max-w-6xl space-y-6 px-5 xl:px-0">
       <img alt="NLW Expert" src="/media/logo-dark.svg" />
 
       <form>
@@ -64,11 +71,11 @@ export const App = () => {
 
       <div className="h-px bg-slate-700" />
 
-      <section className="grid auto-rows-[250px] grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+      <section className="grid auto-rows-[250px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <NewNoteCard onNoteCreated={onNoteCreated} />
 
         {filteredNotes.map(note => (
-          <NoteCard key={note.id} note={note} />
+          <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted} />
         ))}
       </section>
     </div>

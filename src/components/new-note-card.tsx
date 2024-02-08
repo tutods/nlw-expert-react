@@ -5,65 +5,67 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { toast } from 'sonner';
 
+import { useDialog } from '@/hooks/use-dialog';
+import { useRecording } from '@/hooks/use-recording';
+
 type NewNoteCardProps = {
   onNoteCreated: (content: string) => void;
 };
-
-let speechRecognition: SpeechRecognition | null;
 
 export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState(true);
   const [isRecording, setIsRecording] = useState(false);
   const [content, setContent] = useState('');
 
+  /**
+   * Custom hooks
+   */
+  const { onStartRecording, onStopRecording } = useRecording();
+  const { isOpen, onOpenChange } = useDialog(() => {
+    setShouldShowOnboarding(true);
+    setIsRecording(false);
+    setContent('');
+  });
+
+  /**
+   * Callback function to replace the onboarding with the textarea
+   * to write the note
+   */
   function handleStartEditor() {
     setShouldShowOnboarding(false);
   }
 
+  /**
+   * Callback to start the recording itself and update the textarea
+   * content
+   */
   function handleStartRecording() {
-    const isSpeechRecognitionAPIAvailable =
-      'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
-
-    if (!isSpeechRecognitionAPIAvailable) {
-      toast.error("Sorry, but your browser doesn't support the recording API!");
-      setIsRecording(false);
-      return;
-    }
-
     setIsRecording(true);
     setShouldShowOnboarding(false);
 
-    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-    speechRecognition = new SpeechRecognitionAPI();
-
-    speechRecognition.lang = 'en';
-    speechRecognition.continuous = true;
-    speechRecognition.maxAlternatives = 1;
-    speechRecognition.interimResults = true;
-
-    speechRecognition.onresult = evt => {
-      const transcription = Array.from(evt.results).reduce((text, result) => {
-        return text.concat(result[0].transcript);
-      }, '');
-
-      setContent(transcription);
-    };
-
-    speechRecognition.onerror = evt => {
-      console.error(evt);
-    };
-
-    speechRecognition.start();
+    onStartRecording({
+      onUnsupportedError: () => {
+        toast.error("Sorry, but your browser doesn't support the recording API!");
+        setIsRecording(false);
+        setShouldShowOnboarding(true);
+      },
+      onResult: transcription => setContent(transcription),
+    });
   }
 
+  /**
+   * Callback to stop the recording
+   */
   function handleStopRecording() {
     setIsRecording(false);
-
-    if (!!speechRecognition) {
-      speechRecognition.stop();
-    }
+    onStopRecording();
   }
 
+  /**
+   * Callback to update the content while the user writes on
+   * the textarea
+   * @param evt Textarea event containing the written text
+   */
   function handleContentChange(evt: ChangeEvent<HTMLTextAreaElement>) {
     const { value } = evt.target;
 
@@ -74,6 +76,9 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
     setContent(value);
   }
 
+  /**
+   * Callback to save a note with the written/recorded content
+   */
   function handleSaveNote() {
     if (!content) {
       return;
@@ -89,7 +94,7 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
   }
 
   return (
-    <Dialog.Root>
+    <Dialog.Root onOpenChange={onOpenChange} open={isOpen}>
       <Dialog.Trigger className="flex flex-col gap-3 rounded-md bg-slate-700 p-5 text-left outline-none transition-colors duration-300 ease-in-out hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400">
         <h3 className="text-sm font-medium text-slate-200">Add your note</h3>
         <p className="text-sm leading-6 text-slate-400">
@@ -98,7 +103,7 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/60" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 flex h-[60vh] w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-md bg-slate-700 outline-none">
+        <Dialog.Content className="fixed inset-0 flex w-full flex-col overflow-hidden bg-slate-700 outline-none md:inset-auto md:left-1/2 md:top-1/2 md:h-[60vh] md:max-w-[640px] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-md">
           <Dialog.Close className="absolute right-0 top-0 bg-slate-800 p-1.5 text-slate-400 outline-none transition-colors ease-in-out hover:bg-slate-900 hover:text-slate-100 focus-visible:bg-lime-400 focus-visible:text-lime-950">
             <X className="size-5" />
           </Dialog.Close>
