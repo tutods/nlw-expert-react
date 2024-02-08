@@ -116,7 +116,6 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
                   Start by{' '}
                   <button
                     className="font-medium text-lime-400 outline-none transition-all ease-in-out hover:underline focus-visible:underline disabled:cursor-not-allowed"
-                    disabled={isRecording}
                     onClick={handleStartRecording}
                     type="button"
                   >
@@ -155,7 +154,7 @@ export const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
             ) : (
               <button
                 className="w-full bg-lime-400 py-4 text-center text-sm font-medium text-lime-950 outline-none transition-colors ease-in-out enabled:hover:bg-lime-500 enabled:focus-visible:bg-lime-600 disabled:cursor-not-allowed disabled:opacity-50"
-                disabled={!content}
+                disabled={shouldShowOnboarding}
                 onClick={handleSaveNote}
                 type="button"
               >
