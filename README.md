@@ -38,7 +38,7 @@ This are some changes I have made during this 3 days course:
 ![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)
 ](https://linkedin.com/in/daniel-sousa-tutods)
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/dsousa_12)
-[![instragram](https://img.shields.io/badge/instragram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://twitter.com/dsousa_12)
+[![instagram](https://img.shields.io/badge/instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://twitter.com/dsousa_12)
 
 [react]: https://img.shields.io/badge/react-1E4174?style=for-the-badge&logo=react&logoColor=white
 [tailwind]: https://img.shields.io/badge/tailwindcss-1E4174?style=for-the-badge&logo=tailwindcss&logoColor=white
