@@ -47,7 +47,7 @@ This are some changes I have made during this 3 days course:
 [commitlint]: https://img.shields.io/badge/commitlint-1E4174?style=for-the-badge&logo=commitlint&logoColor=white
 [prettier]: https://img.shields.io/badge/prettier-1E4174?style=for-the-badge&logo=prettier&logoColor=white
 [vite]: https://img.shields.io/badge/vite-1E4174?style=for-the-badge&logo=vite&logoColor=white
-[forks-shield]: https://img.shields.io/github/forks/tutods/lib?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/tutods/nlw-expert-react?style=for-the-badge
 [forks-url]: https://github.com/tutods/nlw-expert-react/network/members
 [stars-shield]: https://img.shields.io/github/stars/tutods/nlw-expert-react?style=for-the-badge
 [stars-url]: https://github.com/tutods/nlw-expert-react/stargazers
