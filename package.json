@@ -15,8 +15,6 @@
     "lint:fix": "eslint --ext .js,.ts,.tsx,.jsx . --ignore-path .gitignore --fix"
   },
   "dependencies": {
-    "@commitlint/cli": "^18.6.0",
-    "@commitlint/config-conventional": "^18.6.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "date-fns": "^3.3.1",
     "husky": "^9.0.10",
@@ -27,6 +25,8 @@
     "sonner": "^1.4.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
     "@tutods/eslint-config": "^1.17.1",
     "@tutods/prettier-config": "^0.3.1",
     "@types/dom-speech-recognition": "^0.0.4",
